@@ -1,7 +1,11 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>Tags</h1>
+  <hr>
   {% for tag in tag_list %}
-    <a href="#">{{ tag.name }}</a>
+    <ul>
+      <li><a href="#">{{ tag.name }}</a></li>
+    </ul>
   {% endfor %}
 {% endblock %}
