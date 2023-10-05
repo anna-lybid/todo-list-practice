@@ -3,9 +3,25 @@
 {% block content %}
   <h1>Tags</h1>
   <hr>
-  {% for tag in tag_list %}
-    <ul>
-      <li><a href="#">{{ tag.name }}</a></li>
-    </ul>
-  {% endfor %}
+    <table class="table">
+      <thead>
+          <tr>
+              <th scope="col">Tag Name</th>
+              <th scope="col">Update</th>
+              <th scope="col">Delete</th>
+          </tr>
+      </thead>
+      <tbody>
+          {% for tag in tag_list %}
+          <tr>
+              <td>{{ tag.name }}</td>
+              <td><a href="{% url "todo_list:tag-update" tag.id %}">Update</a></td>
+              <td><a href="{% url "todo_list:tag-delete" tag.id %}">Delete</a></td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+  <button type="submit" class="btn btn-info new-task-but">
+    <a href="{% url "todo_list:tag-create" %}">Add new tag</a>
+  </button>
 {% endblock %}

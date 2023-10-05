@@ -16,4 +16,4 @@ class Task(models.Model):
     tags = models.ManyToManyField(Tag)
 
     def __str__(self) -> str:
-        return f"Task: {self.content}"
+        return self.content
