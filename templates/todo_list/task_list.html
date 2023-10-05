@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>TODO list</h1>
+  <button class="btn btn-info new-task-but">
+    <a href="{% url "todo_list:task-create" %}">Add new task</a>
+  </button>
+  <ul>
+    {% for task in task_list %}
+      <li>
+        <div style="float: left;">
+          <strong>
+            {{ task.content }}
+            {% if not task.is_done %}
+              <bold>(Not done)</bold>
+            {% endif %}
+          </strong>
+          <p>
+            Created: {{ task.created_at }}. Deadline: {{ task.deadline }}
+          </p>
+          <p>
+            Tags:
+            {% for tag in task.tags.all %}
+              {{ tag.name }}
+            {% endfor %}
+          </p>
+          <button class="btn btn-secondary">
+            <a href="{% url "todo_list:task-update" task.id %}">Update</a>
+          </button>
+          <button class="btn btn-secondary">
+            <a href="{% url "todo_list:task-delete" task.id %}">Delete</a>
+          </button>
+        </div>
+
+        <div style="float: right;">
+          <form method="post" action="{% url 'todo_list:task-status' task.id %}">
+            {% csrf_token %}
+            <input type="hidden" name="task_id" value="{{ task.id }}">
+            {% if not task.is_done %}
+              <button type="submit" class="btn btn-success comp-undo-but" name="action" value="complete">Complete</button>
+            {% else %}
+              <button type="submit" class="btn btn-secondary comp-undo-but" name="action" value="undo">Undo</button>
+            {% endif %}
+          </form>
+        </div>
+      
+        <div style="clear: both;"></div>
+      </li>
+      <hr>
+    {% endfor %}
+  </ul>
+
+{% endblock %}

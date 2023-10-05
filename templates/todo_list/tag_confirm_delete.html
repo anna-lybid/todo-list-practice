@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Are you sure you want to delete this tag??</h1>
+  <h3>Tag <strong>{{ tag.name }}</strong> has such tasks:</h3>
+  {% for task in tag.task_set.all %}
+    <ul>
+      <li>{{ task.content }}</li>
+    </ul>
+  {% endfor %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Yes" class="btn btn-danger det-but">
+    <button class="btn btn-info det-but">
+      <a href="javascript:history.back()">Cancel</a>
+    </button>
+  </form>
+{% endblock %}
