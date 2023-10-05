@@ -24,13 +24,14 @@
               {{ tag.name }}
             {% endfor %}
           </p>
-          <button class="btn btn-light">
+          <button class="btn btn-secondary">
             <a href="{% url "todo_list:task-update" task.id %}">Update</a>
           </button>
-          <button class="btn btn-light">
+          <button class="btn btn-secondary">
             <a href="{% url "todo_list:task-delete" task.id %}">Delete</a>
           </button>
         </div>
+
         <div style="float: right;">
           <form method="post" action="{% url 'todo_list:task-status' task.id %}">
             {% csrf_token %}
@@ -42,6 +43,7 @@
             {% endif %}
           </form>
         </div>
+      
         <div style="clear: both;"></div>
       </li>
       <hr>

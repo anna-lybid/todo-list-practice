@@ -3,14 +3,20 @@
 {% block content %}
   <h1>Are you sure you want to delete this task??</h1>
   <h3>{{ task.content }}</h3>
+  <hr>
   <h6>Has such tags:</h6>
   {% for tag in task.tags.all %}
     <ul>
       <li>{{ tag.name }}</li>
     </ul>
   {% endfor %}
+  <hr>
+  <br>
   <form action="" method="post">
     {% csrf_token %}
-    <input type="submit" value="Yes" class="btn btn-danger">
+    <input type="submit" value="Yes" class="btn btn-danger det-but">
+    <button class="btn btn-info det-but">
+      <a href="javascript:history.back()">Cancel</a>
+    </button>
   </form>
 {% endblock %}

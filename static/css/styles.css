@@ -20,3 +20,12 @@ bold {
     top: 35px;
     transform: translate(-50%, -50%);
 }
+
+.det-but {
+    width: 100px;
+}
+
+button a {
+    text-decoration: none;
+    color: white;
+}

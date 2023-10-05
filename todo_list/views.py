@@ -27,7 +27,7 @@ class TaskDeleteView(generic.DeleteView):
 
 
 class TaskChangeStatusView(View):
-    def post(self, request, *args, **kwargs):
+    def post(self, request, *args, **kwargs) -> redirect:
         task_id = kwargs.get("pk")
         action = request.POST.get("action")
         task = get_object_or_404(Task, id=task_id)
